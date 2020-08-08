@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{Component} from 'react';
+import {Route,Switch} from 'react-router-dom';
+import Category from './components/Category';
+import Products from './components/Products';
+import {fakeAuth, Login} from './components/Login' 
 import './App.css';
+import Admin from './components/Admin';
+import Home from './components/Home'
+import Navbar from './components/Navbar'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+
+class App extends Component {
+  render() {
+
+    return (
+    <div>
+      <Navbar/>   
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route path="/Category" component={Category}/>
+        <Route path="/Products" component={Products}/>
+        <Route path="/Login" component={Login}/>
+        <Admin authed={fakeAuth.isAuthenticated} path='/Admin' component = {Admin} />
+      </Switch>
     </div>
-  );
+    );
+  }
 }
 
-export default App;
+export default App
